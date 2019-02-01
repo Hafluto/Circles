@@ -9,10 +9,9 @@ background: #d3d3d3;
 }
 </style>
 <h1>Bomberman 3.141592</h1>
+<input type="text" id="count" onblur="init()">
 <br>
 <canvas id="canvas" height="400" width="400">
-<br>
-
 </body>
 </html>
 <script>
@@ -26,6 +25,10 @@ CTX.translate(CANVASWIDTH/2, CANVASHEIGHT/2);
 CTX.scale(1, -1);
 
 function init(){
+CTX.save();
+CTX.setTransform(1,0,0,1,0,0);
+CTX.clearRect(0,0, CANVASWIDTH, CANVASHEIGHT);
+CTX.restore();
 
 CTX.beginPath();
 CTX.moveTo(-200, 0);
@@ -37,19 +40,33 @@ CTX.moveTo(0, -200);
 CTX.lineTo(0, 200);
 CTX.stroke();
 
+drawCircles();
 
 }
-function drawCircleGivenAngle(i){
+function drawCircleGivenAngle(angle, count, dist){
+var radius = 10;
+var x = (dist * Math.sin(angle));
+var y = (dist * Math.cos(angle));
+
+  CTX.beginPath();
+  CTX.arc(x, y, radius, 0, 2 * Math.PI);
+  CTX.stroke();
+
 
 }
 
-function drawCircles(x, y){
-var x = x;
-var y = y;
-var radius = 5;
-
+function drawCircles(){
+var count = document.getElementById("count").value;
+var angle = 0;
+var dist = 50;
 CTX.beginPath();
-CTX.arc(x, y, radius, 0, 2 * Math.PI);
+CTX.arc(0, 0, dist, 0, 2 * Math.PI);
 CTX.stroke();
+
+for(i = 0; i < count; i++){
+
+angle = (i / (count/2)) * (Math.PI);
+drawCircleGivenAngle(angle, count, dist);
+}
 }
 </script>
