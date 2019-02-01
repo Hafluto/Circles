@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body onload = "init()">
+
+<style>
+canvas{
+border:1px solid #000000;
+background: #d3d3d3;
+}
+</style>
+<h1>Bomberman 3.141592</h1>
+<br>
+<canvas id="canvas" height="400" width="400">
+<br>
+
+</body>
+</html>
+<script>
+
+var canvas = document.querySelector("#canvas");
+var CTX = canvas.getContext("2d");
+var CANVASHEIGHT = 400;
+var CANVASWIDTH = 400;
+
+CTX.translate(CANVASWIDTH/2, CANVASHEIGHT/2);
+CTX.scale(1, -1);
+
+function init(){
+
+CTX.beginPath();
+CTX.moveTo(-200, 0);
+CTX.lineTo(200, 0);
+CTX.stroke();
+
+CTX.beginPath();
+CTX.moveTo(0, -200);
+CTX.lineTo(0, 200);
+CTX.stroke();
+
+
+}
+function drawCircleGivenAngle(i){
+
+}
+
+function drawCircles(x, y){
+var x = x;
+var y = y;
+var radius = 5;
+
+CTX.beginPath();
+CTX.arc(x, y, radius, 0, 2 * Math.PI);
+CTX.stroke();
+}
+</script>
