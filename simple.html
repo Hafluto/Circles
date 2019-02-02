@@ -9,9 +9,15 @@ background: #d3d3d3;
 }
 </style>
 <h1>Bomberman 3.141592</h1>
-<input type="text" id="count" onblur="init()">
+
+<input type="text" id="count" onblur="init()" value="100">Circle count
+<br>
+<input type="text" id="dist" onblur="init()" value="100">Dist from centre
+<br>
+<input type="text" id="radius" onblur="init()" value="100">Radius of circles
 <br>
 <canvas id="canvas" height="400" width="400">
+
 </body>
 </html>
 <script>
@@ -44,7 +50,7 @@ drawCircles();
 
 }
 function drawCircleGivenAngle(angle, count, dist){
-var radius = 10;
+var radius = document.getElementById("radius").value;
 var x = (dist * Math.sin(angle));
 var y = (dist * Math.cos(angle));
 
@@ -58,7 +64,7 @@ var y = (dist * Math.cos(angle));
 function drawCircles(){
 var count = document.getElementById("count").value;
 var angle = 0;
-var dist = 50;
+var dist = document.getElementById("dist").value;
 CTX.beginPath();
 CTX.arc(0, 0, dist, 0, 2 * Math.PI);
 CTX.stroke();
@@ -66,6 +72,7 @@ CTX.stroke();
 for(i = 0; i < count; i++){
 
 angle = (i / (count/2)) * (Math.PI);
+console.log(angle);
 drawCircleGivenAngle(angle, count, dist);
 }
 }
