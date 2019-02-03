@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body onload = "init()">
-
+<script src="circles.js"></script>
 <style>
 canvas{
 border:1px solid #000000;
@@ -10,7 +10,7 @@ background: #d3d3d3;
 </style>
 <h1>Bomberman 3.141592</h1>
 
-<input type="text" id="count" onblur="init()" value="100">Circle count
+<input type="text" id="count" onblur="init()" value="10">Circle count
 <br>
 <input type="text" id="dist" onblur="init()" value="100">Dist from centre
 <br>
@@ -26,6 +26,8 @@ var canvas = document.querySelector("#canvas");
 var CTX = canvas.getContext("2d");
 var CANVASHEIGHT = 400;
 var CANVASWIDTH = 400;
+
+var circles = [];
 
 CTX.translate(CANVASWIDTH/2, CANVASHEIGHT/2);
 CTX.scale(1, -1);
@@ -46,6 +48,7 @@ CTX.moveTo(0, -200);
 CTX.lineTo(0, 200);
 CTX.stroke();
 
+circles = [];
 drawCircles();
 
 }
@@ -54,11 +57,8 @@ var radius = document.getElementById("radius").value;
 var x = (dist * Math.sin(angle));
 var y = (dist * Math.cos(angle));
 
-  CTX.beginPath();
-  CTX.arc(x, y, radius, 0, 2 * Math.PI);
-  CTX.stroke();
-
-
+var circle = new Circle(new Point(x, y), radius);
+circles.push(circle);
 }
 
 function drawCircles(){
@@ -74,6 +74,10 @@ for(i = 0; i < count; i++){
 angle = (i / (count/2)) * (Math.PI);
 console.log(angle);
 drawCircleGivenAngle(angle, count, dist);
+}
+for(i = 0; i < circles.length; i++){
+console.log(circles[i]);
+circles[i].draw();
 }
 }
 </script>
