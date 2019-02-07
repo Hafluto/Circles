@@ -1,11 +1,13 @@
-function Circle(point, r){
+function Circle(point, r, colour){
 	this.point = point;
 	this.r = r;
-
+	this.colour  = colour;
 	this.draw = function(){
-			CTX.beginPath();
-			CTX.arc(this.point.x, this.point.y, this.r, 0, 2 * Math.PI);
-			CTX.stroke();
+		CTX.beginPath();
+		CTX.fillStyle = colour;
+		CTX.arc(this.point.x, this.point.y, this.r, 0, 2* Math.PI);
+		CTX.fill();
+		CTX.stroke()
 };
 }
 

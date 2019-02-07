@@ -12,9 +12,11 @@ background: #d3d3d3;
 
 <input type="text" id="count" onblur="init()" value="10">Circle count
 <br>
-<input type="text" id="dist" onblur="init()" value="100">Dist from centre
+<input type="text" id="dist" onblur="init()" value="50">Dist from centre
 <br>
-<input type="text" id="radius" onblur="init()" value="100">Radius of circles
+<input type="text" id="radius" onblur="init()" value="10">Radius of circles
+<br>
+<input type="text" id="angle" onblur="init()" value="0.7">Angle of circles
 <br>
 <canvas id="canvas" height="400" width="400">
 
@@ -57,7 +59,7 @@ var radius = document.getElementById("radius").value;
 var x = (dist * Math.sin(angle));
 var y = (dist * Math.cos(angle));
 
-var circle = new Circle(new Point(x, y), radius);
+var circle = new Circle(new Point(x, y), radius, "#0000ff");
 circles.push(circle);
 }
 
@@ -71,12 +73,11 @@ CTX.stroke();
 
 for(i = 0; i < count; i++){
 
-angle = (i / (count/2)) * (Math.PI);
-console.log(angle);
 drawCircleGivenAngle(angle, count, dist);
+angle = angle + parseFloat(document.getElementById("angle").value);
+console.log(angle);
 }
 for(i = 0; i < circles.length; i++){
-console.log(circles[i]);
 circles[i].draw();
 }
 }
